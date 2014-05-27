@@ -77,7 +77,7 @@ end
       input [31:0] address;
       input [15:0] dat;
       begin
-	 wb_adr_i = {address[31:1],1'b0};
+	 wb_adr_i = {address[31:2],2'b0};
 	 wb_dat_i = {dat,dat};
 	 wb_sel_i = address[1] ? 4'h3 : 4'hc;
 	 wb_we_i = 1;
@@ -108,7 +108,7 @@ end
       input [31:0] address;
       output [7:0] dat;
       begin
-	 wb_adr_i = address[31:0];
+	 wb_adr_i = {address[31:2],2'b0};
 	 wb_sel_i = address[1:0] == 2'b00 ? 4'h8 :
 		    address[1:0] == 2'b01 ? 4'h4 :
 		    address[1:0] == 2'b10 ? 4'h2 : 4'h1;
@@ -127,7 +127,7 @@ end
       input [31:0] address;
       output [15:0] dat;
       begin
-	 wb_adr_i = {address[31:1],1'b0};
+	 wb_adr_i = {address[31:2],2'b0};
 	 wb_sel_i = address[1] ? 4'h3 : 4'hc;
 	 wb_we_i = 0;
 	 wb_stb_i = 1;
